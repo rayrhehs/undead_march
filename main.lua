@@ -14,8 +14,14 @@ end
 
 function love.update(dt)
     love.window.setTitle("Undead March")
+
+
     for i, v in ipairs(entities) do
-        v:Update(dt)
+        if v == World.player then
+            v:Update(dt, entities)
+        else
+            v:Update(dt)
+        end
     end
 end
 

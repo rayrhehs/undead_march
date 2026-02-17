@@ -16,7 +16,7 @@ function Player:New(x, y, scale)
     return this
 end
 
-function Player:Update(dt)
+function Player:Update(dt, entities)
     local dx = 0
 
     if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
@@ -25,6 +25,11 @@ function Player:Update(dt)
 
     if love.keyboard.isDown("right") or love.keyboard.isDown("d") then
         dx = dx + 1
+    end
+
+    if love.keyboard.isDown("space") then
+        local bullet = Projectile:New(self.x, self.y, 500)
+        table.insert(entities, bullet) -- without this - the object is created and deleted immediatley
     end
 
     self.dx = dx * self.speed
