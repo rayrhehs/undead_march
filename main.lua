@@ -1,5 +1,5 @@
-require("entity")
-require("player")
+-- store in global memory space = every other file can access
+local Player = require("player")
 
 World = {
     player = nil

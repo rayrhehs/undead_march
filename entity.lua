@@ -1,4 +1,4 @@
-Entity = {}
+local Entity = {}
 Entity.__index = Entity
 
 function Entity:New(x, y)
@@ -30,3 +30,5 @@ function Entity:Render()
 
     love.graphics.rectangle("fill", self.x, self.y, 30, 30)
 end
+
+return Entity

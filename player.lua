@@ -1,4 +1,7 @@
-Player = Entity:New()
+local Entity = require("entity")
+local Projectile = require("projectile")
+
+local Player = Entity:New()
 Player.__index = Player
 
 function Player:New(x, y, scale)
@@ -28,3 +31,5 @@ function Player:Update(dt)
 
     Entity.Update(self, dt)
 end
+
+return Player
