@@ -1,5 +1,6 @@
 local Entity = require("entity")
 local Projectile = require("projectile")
+local Timer = require("timer")
 
 local Player = Entity:New()
 Player.__index = Player
@@ -11,12 +12,15 @@ function Player:New(x, y, scale)
     this.y = y
     this.scale = scale
     this.speed = 400
+    this.shootTimer = Timer:New(1, nil)
 
     setmetatable(this, self)
     return this
 end
 
 function Player:Update(dt, entities)
+    self.shootTimer:Update(dt)
+
     local dx = 0
 
     if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
@@ -27,9 +31,10 @@ function Player:Update(dt, entities)
         dx = dx + 1
     end
 
-    if love.keyboard.isDown("space") then
+    if love.keyboard.isDown("space") and self.shootTimer.finished then
         local bullet = Projectile:New(self.x, self.y, 500)
-        table.insert(entities, bullet) -- without this - the object is created and deleted immediatley
+        table.insert(entities, bullet) -- without this the object is created and immed. deleted by garbage collector
+        self.shootTimer:Reset()
     end
 
     self.dx = dx * self.speed
