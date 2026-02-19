@@ -5,7 +5,7 @@ function Timer:New(duration)
     local this = {
         duration = duration,
         time = 0,
-        finished = false
+        finished = true -- lets the player shoot immediately as game starts
     }
 
     setmetatable(this, self)

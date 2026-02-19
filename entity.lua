@@ -28,7 +28,7 @@ function Entity:Render()
     --         self.height / 2)
     -- end
 
-    love.graphics.rectangle("fill", self.x, self.y, 30, 30)
+    -- love.graphics.rectangle("fill", self.x, self.y, 30, 30)
 end
 
 return Entity

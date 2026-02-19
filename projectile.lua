@@ -22,4 +22,10 @@ function Projectile:Update(dt)
     Entity.Update(self, dt)
 end
 
+function Projectile:Render()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.rectangle("fill", self.x, self.y, 30, 30)
+    love.graphics.setColor(0, 0, 0)
+end
+
 return Projectile

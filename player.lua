@@ -12,14 +12,14 @@ function Player:New(x, y, scale)
     this.y = y
     this.scale = scale
     this.speed = 400
-    this.shootTimer = Timer:New(1, nil)
+    this.shootTimer = Timer:New(1)
 
     setmetatable(this, self)
     return this
 end
 
 function Player:Update(dt, entities)
-    self.shootTimer:Update(dt)
+    self.shootTimer:Update(dt) -- run instance of timer we created on player
 
     local dx = 0
 
@@ -40,6 +40,12 @@ function Player:Update(dt, entities)
     self.dx = dx * self.speed
 
     Entity.Update(self, dt)
+end
+
+function Player:Render()
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.rectangle("fill", self.x, self.y, 30, 30)
+    love.graphics.setColor(0, 0, 0)
 end
 
 return Player
