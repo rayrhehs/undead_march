@@ -19,11 +19,7 @@ function love.update(dt)
     love.window.setTitle("Undead March")
 
     for i, v in ipairs(entities) do
-        if v == World.player then
-            v:Update(dt, entities)
-        else
-            v:Update(dt)
-        end
+        v:Update(dt, entities)
     end
 end
 
@@ -31,6 +27,10 @@ function love.draw()
     for i, v in ipairs(entities) do
         v:Render()
     end
-    World.enemy:Render()
-    World.player:Render()
+
+    for i = #entities, 1, -1 do
+        if entities[i].dead then
+            table.remove(entities, i) -- .remove(table, position)
+        end
+    end
 end

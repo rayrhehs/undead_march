@@ -11,6 +11,8 @@ function Entity:New(x, y)
         scale = 1,
         width = 0,
         height = 0,
+        dead = false,
+        type = nil
     }
 
     setmetatable(this, self)
@@ -28,7 +30,7 @@ function Entity:Render()
     --         self.height / 2)
     -- end
 
-    -- love.graphics.rectangle("fill", self.x, self.y, 30, 30)
+    love.graphics.rectangle("fill", self.x, self.y, 30, 30)
 end
 
 return Entity

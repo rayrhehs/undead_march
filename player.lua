@@ -13,6 +13,7 @@ function Player:New(x, y, scale)
     this.scale = scale
     this.speed = 400
     this.shootTimer = Timer:New(1)
+    this.type = "player"
 
     setmetatable(this, self)
     return this
