@@ -9,7 +9,7 @@ Projectile.__index = Projectile
 function Projectile:New(x, y, speed)
     local this = Entity:New(x, y)
 
-    this.width = 30
+    this.width = 5
     this.height = 30
     this.speed = speed
     this.type = "projectile"
@@ -29,13 +29,15 @@ function Projectile:Update(dt, entities)
     local dy = -1
     self.dy = dy * self.speed
 
-
+    -- destroys bullet
     for i, entity in ipairs(entities) do
         if entity.type ~= "player" and entity ~= self and self:CheckCollision(entity) then
             self.dead = true
             entity.dead = true
         end
     end
+
+    -- destroys bullet if above boundary
     if self.y <= 0 then
         self.dead = true
     end

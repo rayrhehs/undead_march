@@ -8,11 +8,25 @@ World = {
 
 local entities = {}
 
+local enemyX = 100
+local enemyY = 100
+local enemySize = 30
+local enemyGap = 10
+
 function love.load()
     World.player = Player:New(280, 500, 1)
-    World.enemy = Enemy:New()
     table.insert(entities, World.player)
-    table.insert(entities, World.enemy)
+    for i = 1, 6 do
+        local r = 255
+        for b = 1, 11 do
+            World.enemy = Enemy:New(enemyX, enemyY, r)
+            table.insert(entities, World.enemy)
+            enemyX = enemyX + enemySize + enemyGap
+            r = r - 20
+        end
+        enemyX = 100
+        enemyY = enemyY + enemySize + enemyGap
+    end
 end
 
 function love.update(dt)
