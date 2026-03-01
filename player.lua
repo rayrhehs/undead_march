@@ -1,3 +1,4 @@
+local Assets = require("assets")
 local Entity = require("entity")
 local Projectile = require("projectile")
 local Timer = require("timer")
@@ -5,12 +6,13 @@ local Timer = require("timer")
 local Player = Entity:New()
 Player.__index = Player
 
-function Player:New(x, y, scale)
-    local this = Entity:New(x, y)
+function Player:New(x, y)
+    local this = Entity:New(x, y, Assets.sprites.player)
 
     this.x = x
     this.y = y
-    this.scale = scale
+    this.width = 12
+    this.height = 12
     this.speed = 400
     this.shootTimer = Timer:New(1)
     this.type = "player"
@@ -20,7 +22,7 @@ function Player:New(x, y, scale)
 end
 
 function Player:Update(dt, entities)
-    self.shootTimer:Update(dt) -- run instance of timer we created on player
+    self.shootTimer:Update(dt) -- run instance of timer we created in player update
 
     local dx = 0
 
@@ -43,10 +45,10 @@ function Player:Update(dt, entities)
     Entity.Update(self, dt)
 end
 
-function Player:Render()
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.rectangle("fill", self.x, self.y, 30, 30)
-    love.graphics.setColor(0, 0, 0)
-end
+-- function Player:Render()
+--     love.graphics.setColor(1, 1, 1)
+--     love.graphics.rectangle("fill", self.x, self.y, 30, 30)
+--     love.graphics.setColor(0, 0, 0)
+-- end
 
 return Player

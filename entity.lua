@@ -1,18 +1,21 @@
+local Assets = require("assets")
+
 local Entity = {}
 Entity.__index = Entity
 
-function Entity:New(x, y)
+function Entity:New(x, y, texture)
     local this = {
         x = x,
         y = y,
         dx = 0,
         dy = 0,
-        texture = nil,
-        scale = 1,
+        texture = texture,
+        scale = 4,
         width = 0,
         height = 0,
         dead = false,
-        type = nil
+        type = nil,
+        angle = 0
     }
 
     setmetatable(this, self)
@@ -25,12 +28,11 @@ function Entity:Update(dt)
 end
 
 function Entity:Render()
-    -- if self.texture then
-    --     love.graphics.draw(self.texture, self.x, self.y, self.angle, self.scale, self.scale, self.width / 2,
-    --         self.height / 2)
-    -- end
+    if self.texture then
+        love.graphics.draw(Assets.tileset, self.texture, self.x, self.y, self.angle, self.scale, self.scale)
+    end
 
-    love.graphics.rectangle("fill", self.x, self.y, 30, 30)
+    -- love.graphics.rectangle("fill", self.x, sef.y, 30, 30)
 end
 
 return Entity

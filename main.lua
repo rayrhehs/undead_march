@@ -1,4 +1,5 @@
 -- store in global memory space = every other file can access
+local Assets = require("assets")
 local Player = require("player")
 local Enemy = require("enemy")
 
@@ -14,9 +15,13 @@ local enemySize = 30
 local enemyGap = 10
 
 function love.load()
-    World.player = Player:New(280, 500, 1)
+    Assets:Load()
+
+    World.player = Player:New(280, 500)
     table.insert(entities, World.player)
-    for i = 1, 6 do
+
+    -- create enemies is rows and columns
+    for i = 1, 5 do
         local r = 255
         for b = 1, 11 do
             World.enemy = Enemy:New(enemyX, enemyY, r)
@@ -42,6 +47,7 @@ function love.draw()
         v:Render()
     end
 
+    -- removes enemies that have the tag .dead = true
     for i = #entities, 1, -1 do
         if entities[i].dead then
             table.remove(entities, i) -- .remove(table, position)

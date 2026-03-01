@@ -1,4 +1,5 @@
 -- imports
+local Assets = require("assets")
 local Entity = require("entity")
 
 -- file
@@ -7,7 +8,7 @@ Projectile.__index = Projectile
 
 
 function Projectile:New(x, y, speed)
-    local this = Entity:New(x, y)
+    local this = Entity:New(x, y, Assets.sprites.projectile)
 
     this.width = 5
     this.height = 30
@@ -43,15 +44,6 @@ function Projectile:Update(dt, entities)
     end
 
     Entity.Update(self, dt)
-end
-
-function Projectile:Render()
-    love.graphics.setColor(1, 1, 1)
-    -- if self.y <= 0 then
-    --     love.graphics.printf("bullet destroyed", 0, 50, 400, "center")
-    -- end
-    love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
-    love.graphics.setColor(0, 0, 0)
 end
 
 return Projectile
