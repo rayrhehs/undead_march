@@ -42,7 +42,7 @@ function Player:Update(dt, entities)
 
     self.dx = dx * self.speed
 
-    Entity.Update(self, dt)
+    Entity.Update(self, dt) -- could i also do Entity:Update(dt)??
 end
 
 -- function Player:Render()

@@ -1,6 +1,6 @@
 local Assets = {
     tileset = nil,
-    sprites = {}
+    sprites = {},
 }
 
 function Assets:Load()
@@ -21,7 +21,14 @@ function Assets:Load()
 
     self.sprites = {
         player = createQuadFromTileset(132, 40, 1, 1),
-        projectile = createQuadFromTileset(1, 1, 1, 1)
+        projectile = createQuadFromTileset(1, 30, 1, 1),
+        enemies = {
+            createQuadFromTileset(110, 41, 1, 1),
+            createQuadFromTileset(111, 41, 1, 1),
+            createQuadFromTileset(112, 41, 1, 1),
+            createQuadFromTileset(113, 41, 1, 1),
+            createQuadFromTileset(114, 41, 1, 1)
+        }
     }
 end
 

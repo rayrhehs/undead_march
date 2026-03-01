@@ -10,7 +10,7 @@ function Entity:New(x, y, texture)
         dx = 0,
         dy = 0,
         texture = texture,
-        scale = 4,
+        scale = 1,
         width = 0,
         height = 0,
         dead = false,
