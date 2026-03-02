@@ -2,6 +2,7 @@
 local Assets = require("assets")
 local Player = require("player")
 local EnemySpawner = require("enemySpawner")
+local Push = require("lib.push")
 
 World = {
     player = nil
@@ -9,15 +10,18 @@ World = {
 
 local entities = {}
 
--- local enemyX = 100
--- local enemyY = 100
--- local enemySize = 30
--- local enemyGap = 10
+WINDOW_WIDTH, WINDOW_HEIGHT = love.window.getDesktopDimensions()
+WINDOW_WIDTH, WINDOW_HEIGHT = WINDOW_WIDTH * 0.8, WINDOW_HEIGHT * 0.8
+
+VIRTUAL_WIDTH, VIRTUAL_HEIGHT = 300, 300
 
 function love.load()
+    love.graphics.setDefaultFilter("nearest", "nearest")
+    Push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, { fullscreen = false, vsync = true })
+
     Assets:Load()
 
-    World.player = Player:New(280, 500)
+    World.player = Player:New(150, 250)
     table.insert(entities, World.player)
 
     -- create enemies in rows and columns
@@ -32,7 +36,12 @@ function love.update(dt)
     end
 end
 
+function love.resize(w, h)
+    Push:resize(w, h)
+end
+
 function love.draw()
+    Push:start()
     for i, v in ipairs(entities) do
         v:Render()
     end
@@ -43,4 +52,5 @@ function love.draw()
             table.remove(entities, i) -- .remove(table, position)
         end
     end
+    Push:finish()
 end

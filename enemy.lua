@@ -8,8 +8,8 @@ function Enemy:New(x, y, texture)
 
     this.x = x
     this.y = y
-    this.width = 30
-    this.height = 30
+    this.width = 12
+    this.height = 12
     this.type = "enemy"
 
     setmetatable(this, self)

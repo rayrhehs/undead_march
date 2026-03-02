@@ -10,7 +10,7 @@ Projectile.__index = Projectile
 function Projectile:New(x, y, speed)
     local this = Entity:New(x, y, Assets.sprites.projectile)
 
-    this.width = 5
+    this.width = 12
     this.height = 30
     this.speed = speed
     this.type = "projectile"
