@@ -35,7 +35,7 @@ function Player:Update(dt, entities)
     end
 
     if love.keyboard.isDown("space") and self.shootTimer.finished then
-        local bullet = Projectile:New(self.x, self.y, 500)
+        local bullet = Projectile:New(self.x, self.y)
         table.insert(entities, bullet) -- without this the object is created and immed. deleted by garbage collector
         self.shootTimer:Reset()
     end
@@ -44,11 +44,5 @@ function Player:Update(dt, entities)
 
     Entity.Update(self, dt) -- could i also do Entity:Update(dt)??
 end
-
--- function Player:Render()
---     love.graphics.setColor(1, 1, 1)
---     love.graphics.rectangle("fill", self.x, self.y, 30, 30)
---     love.graphics.setColor(0, 0, 0)
--- end
 
 return Player

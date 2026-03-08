@@ -2,6 +2,7 @@
 local Assets = require("assets")
 local Player = require("player")
 local EnemySpawner = require("enemySpawner")
+local DebugMode = require("debugMode")
 local Push = require("lib.push")
 
 World = {
@@ -14,6 +15,12 @@ WINDOW_WIDTH, WINDOW_HEIGHT = love.window.getDesktopDimensions()
 WINDOW_WIDTH, WINDOW_HEIGHT = WINDOW_WIDTH * 0.8, WINDOW_HEIGHT * 0.8
 
 VIRTUAL_WIDTH, VIRTUAL_HEIGHT = 300, 300
+
+function love.keypressed(key)
+    if key == "f2" then
+        DebugMode.showHitboxes = not DebugMode.showHitboxes
+    end
+end
 
 function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")

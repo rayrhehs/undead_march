@@ -1,19 +1,21 @@
--- imports
 local Assets = require("assets")
 local Entity = require("entity")
 
--- file
+
 local Projectile = Entity:New()
 Projectile.__index = Projectile
 
 
-function Projectile:New(x, y, speed)
+function Projectile:New(x, y)
     local this = Entity:New(x, y, Assets.sprites.projectile)
 
-    this.width = 12
-    this.height = 30
-    this.speed = speed
+    this.width = 4
+    this.height = 12
+    this.speed = 300
     this.type = "projectile"
+
+    this.offsetX = 6
+    this.offsetY = 6
 
     setmetatable(this, self)
     return this
