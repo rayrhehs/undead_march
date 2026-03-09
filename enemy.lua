@@ -20,4 +20,10 @@ function Enemy:Update()
 
 end
 
+-- function Enemy:Render()
+--     love.graphics.setColor(self.color / 255, 0, 0) -- Red (RGB values from 0 to 1)
+--     love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
+--     love.graphics.setColor(0, 0, 0)
+-- end
+
 return Enemy
