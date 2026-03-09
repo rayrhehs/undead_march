@@ -10,9 +10,9 @@ Projectile.__index = Projectile
 function Projectile:New(x, y, speed)
     local this = Entity:New(x, y, Assets.sprites.projectile)
 
-    this.width = 12
-    this.height = 30
-    this.speed = speed
+    this.hitboxWidth = 4
+    this.hitboxHeight = 12
+    this.speed = 50
     this.type = "projectile"
 
     setmetatable(this, self)
@@ -20,10 +20,13 @@ function Projectile:New(x, y, speed)
 end
 
 function Projectile:CheckCollision(other)
-    return self.x < other.x + other.width and
-        other.x < self.x + self.width and
-        self.y < other.y + other.height and
-        other.y < self.y + self.height
+    local sx, sy, sw, sh = self:GetHitbox()
+    local ox, oy, ow, oh = other:GetHitbox()
+
+    return sx < ox + ow and
+        ox < sx + sw and
+        sy < oy + oh and
+        oy < sy + sh
 end
 
 function Projectile:Update(dt, entities)
