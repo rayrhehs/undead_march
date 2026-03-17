@@ -13,8 +13,8 @@ function Player:New(x, y)
     this.y = y
     this.hitboxWidth = 12
     this.hitboxHeight = 12
-    this.speed = 100
-    this.shootTimer = Timer:New(1)
+    this.speed = 150
+    this.shootTimer = Timer:New(1, true)
     this.type = "player"
 
 
@@ -36,8 +36,8 @@ function Player:Update(dt, entities)
     end
 
     if love.keyboard.isDown("space") and self.shootTimer.finished then
-        local bullet = Projectile:New(self.x, self.y - 8)
-        table.insert(entities, bullet) -- without this the object is created and immed. deleted by garbage collector
+        local bullet = Projectile:New(self.x, self.y - 8) -- y - 8 is the offset above the player
+        table.insert(entities, bullet)                    -- without this the object is created and immed. deleted by garbage collector
         self.shootTimer:Reset()
     end
 

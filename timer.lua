@@ -1,11 +1,11 @@
 local Timer = {}
 Timer.__index = Timer
 
-function Timer:New(duration)
+function Timer:New(duration, state)
     local this = {
         duration = duration,
         time = 0,
-        finished = true -- lets the player shoot immediately as game starts
+        finished = state
     }
 
     setmetatable(this, self)

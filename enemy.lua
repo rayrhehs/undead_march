@@ -3,21 +3,33 @@ local Entity = require("entity")
 local Enemy = Entity:New()
 Enemy.__index = Enemy
 
-function Enemy:New(x, y, texture)
+function Enemy:New(x, y, texture, enemyState)
     local this = Entity:New(x, y, texture)
 
     this.x = x
     this.y = y
     this.hitboxWidth = 12
     this.hitboxHeight = 12
+    this.moveDistance = 12
     this.type = "enemy"
+    this.enemyState = enemyState
 
     setmetatable(this, self)
     return this
 end
 
-function Enemy:Update()
+function Enemy:MoveEnemy()
+    if self.x > 250 then
+        self.moveDistance = self.moveDistance * self.enemyState.direction
+        self.enemyState.shouldReverse = true
+    end
+    self.x = self.x + self.moveDistance
+end
 
+function Enemy:Update(dt)
+    if self.enemyState.timer.finished then
+        self:MoveEnemy()
+    end
 end
 
 -- function Enemy:Render()

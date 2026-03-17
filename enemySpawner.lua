@@ -3,15 +3,15 @@ local Enemy = require("enemy")
 
 local EnemySpawner = {}
 
-function EnemySpawner:SpawnGrid(entities)
+function EnemySpawner:SpawnGrid(entities, enemyState)
     local rows = 5
     local cols = 11
     local gap = 5
 
     -- Calculate total grid dimensions
     -- Assuming each enemy sprite has a width/height (adjust these to match your actual sprite size)
-    local enemyWidth = 12  -- Replace with your actual enemy sprite width
-    local enemyHeight = 12 -- Replace with your actual enemy sprite height
+    local enemyWidth = 12
+    local enemyHeight = 12
 
     local gridWidth = (cols * enemyWidth) + ((cols - 1) * gap)
     local gridHeight = (rows * enemyHeight) + ((rows - 1) * gap)
@@ -29,7 +29,7 @@ function EnemySpawner:SpawnGrid(entities)
     for i = 1, rows do
         local currentSprite = Assets.sprites.enemies[i]
         for b = 1, cols do
-            local enemy = Enemy:New(currentX, currentY, currentSprite)
+            local enemy = Enemy:New(currentX, currentY, currentSprite, enemyState)
             table.insert(entities, enemy)
             currentX = currentX + enemyWidth + gap
         end

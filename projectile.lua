@@ -7,12 +7,12 @@ local Projectile = Entity:New()
 Projectile.__index = Projectile
 
 
-function Projectile:New(x, y, speed)
+function Projectile:New(x, y)
     local this = Entity:New(x, y, Assets.sprites.projectile)
 
     this.hitboxWidth = 4
     this.hitboxHeight = 12
-    this.speed = 50
+    this.speed = 300
     this.type = "projectile"
 
     setmetatable(this, self)
@@ -20,6 +20,7 @@ function Projectile:New(x, y, speed)
 end
 
 function Projectile:CheckCollision(other)
+    -- call hitbox inside of check collision
     local sx, sy, sw, sh = self:GetHitbox()
     local ox, oy, ow, oh = other:GetHitbox()
 
