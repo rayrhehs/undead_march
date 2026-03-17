@@ -19,11 +19,10 @@ function Enemy:New(x, y, texture, enemyState)
 end
 
 function Enemy:MoveEnemy()
-    if self.x > 250 then
-        self.moveDistance = self.moveDistance * self.enemyState.direction
+    if (self.x > 250 and self.enemyState.direction == 1) or (self.x < 50 and self.enemyState.direction == -1) then
         self.enemyState.shouldReverse = true
     end
-    self.x = self.x + self.moveDistance
+    self.x = self.x + self.moveDistance * self.enemyState.direction
 end
 
 function Enemy:Update(dt)
