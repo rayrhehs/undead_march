@@ -22,15 +22,20 @@ function Enemy:MoveEnemy()
     if (self.x > 250 and self.enemyState.direction == 1) or (self.x < 50 and self.enemyState.direction == -1) then
         self.enemyState.shouldReverse = true
     end
-    self.x = self.x + self.moveDistance * self.enemyState.direction
+
+    if self.enemyState.moveDown == 0 then
+        self.x = self.x + self.moveDistance * self.enemyState.direction
+    end
+    self.y = self.y + (self.moveDistance + 5) * self.enemyState.moveDown
 end
 
-function Enemy:Update(dt)
+function Enemy:Update()
     if self.enemyState.timer.finished then
         self:MoveEnemy()
     end
 end
 
+-- old enemy shape
 -- function Enemy:Render()
 --     love.graphics.setColor(self.color / 255, 0, 0) -- Red (RGB values from 0 to 1)
 --     love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)

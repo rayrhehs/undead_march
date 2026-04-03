@@ -8,6 +8,7 @@ function EnemyState:New()
     local this = State:New()
 
     this.direction = 1
+    this.moveDown = 0
     this.shouldReverse = false
     this.timer = Timer:New(2, false)
 
@@ -18,10 +19,12 @@ end
 function EnemyState:Update(dt)
     if self.timer.finished then
         self.timer:Reset()
+        self.moveDown = 0
     end
 
     if self.shouldReverse then
         self.direction = self.direction * -1
+        self.moveDown = 1
         self.shouldReverse = false
     end
 
